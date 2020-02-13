@@ -1,0 +1,20 @@
+{
+  "name": "photography_webpage",
+  "version": "1.0.0",
+  "description": "Photography webpage using Pexels API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvis Reimanis",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pexels-api-wrapper": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
