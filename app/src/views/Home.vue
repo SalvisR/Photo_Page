@@ -88,7 +88,7 @@ export default {
   methods: {
     getTitleImg() {
       axios
-        .get("http://192.168.1.78:3000/title")
+        .get(`${process.env.VUE_APP_URL}/title`)
         .then(res => {
           this.titleImg = res.data.data.photos[0].src.large2x;
           this.authorName = res.data.data.photos[0].photographer;
@@ -100,7 +100,7 @@ export default {
       this.loading = true;
 
       axios
-        .get("http://192.168.1.78:3000/curated", {
+        .get(`${process.env.VUE_APP_URL}/curated`, {
           params: { page: this.current_page }
         })
         .then(res => {

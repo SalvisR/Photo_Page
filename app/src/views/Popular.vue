@@ -29,7 +29,7 @@ export default {
     getImages() {
       this.loading = true;
       axios
-        .get("http://192.168.1.78:3000/popular", {
+        .get(`${process.env.VUE_APP_URL}/popular`, {
           params: { page: this.current_page }
         })
         .then(res => {
