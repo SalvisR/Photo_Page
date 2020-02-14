@@ -41,11 +41,21 @@ export default {
     openMenu() {
       this.menuOpen = !this.menuOpen;
       this.$refs.menu.classList.toggle("menu-active");
+      this.$emit("menuOpen", this.menuOpen);
 
       if (this.menuOpen) {
-        this.$refs.nav.classList.add("bg");
+        this.$refs.nav.classList.add("bg-active");
+        document.querySelector("html").style.overflow = "hidden";
       } else if (!this.menuOpen) {
-        this.$refs.nav.classList.remove("bg");
+        this.$refs.nav.classList.remove("bg-active");
+        document.querySelector("html").style.overflow = "auto";
+      }
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (this.menuOpen) {
+        this.openMenu();
       }
     }
   }
@@ -85,6 +95,10 @@ export default {
     flex-direction: row;
     align-items: center;
 
+    @include for-tablet {
+      margin-right: 0 !important;
+    }
+
     img {
       width: 50px;
       margin-right: 5px;
@@ -97,6 +111,10 @@ export default {
     span {
       display: inline-block;
       margin: auto 0;
+
+      @include for-tablet {
+        font-size: 0.6rem;
+      }
     }
   }
 
@@ -183,7 +201,11 @@ export default {
 .bg {
   background-color: rgb(46, 46, 46);
 }
+.bg-active {
+  background-color: rgb(46, 46, 46);
+}
 .menu-active {
   display: block;
+  overflow: hidden;
 }
 </style>

@@ -6,58 +6,19 @@
           Find The Best Free Photos
           <span>Photos For Everyone</span>
         </h1>
-        <Search :class="{ display: search }"></Search>
+        <Search :class="{ display: search }" v-if="!menuOpens"></Search>
       </div>
+
+      <span class="home__author">
+        Photo By
+        <a :href="authorUrl">{{authorName}}</a>
+      </span>
     </section>
     <section class="home__content">
       <h3 class="home__tile">Free Stock Photos</h3>
       <ImageContainer :images="imgs"></ImageContainer>
     </section>
     <LoadMoreBtn @click.native="getCuratedImgs" :load="loading"></LoadMoreBtn>
-    <!-- <button class="home__loading" @click="getCuratedImgs">
-      <svg
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        width="100px"
-        height="100px"
-        viewBox="0 0 100 100"
-        enable-background="new 0 0 100 100"
-        xml:space="preserve"
-      >
-        <circle
-          fill="none"
-          stroke="transparent"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          cx="50"
-          cy="50"
-          r="46.281"
-        />
-        <circle
-          :class="{ loader: loading }"
-          fill="none"
-          stroke="#000"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          cx="50"
-          cy="50"
-          r="46.281"
-        />
-        <rect x="24.781" y="26.333" fill="none" width="71.5" height="60.513" />
-        <text
-          :class="{ textLoading: loading }"
-          transform="matrix(1 0 0 1 24.7812 43.3737)"
-        >
-          <tspan x="-12" y="13" font-family="'Arial'" font-size="16">
-            Load More
-          </tspan>
-        </text>
-      </svg>
-    </button>-->
   </div>
 </template>
 
@@ -85,6 +46,7 @@ export default {
       search: false
     };
   },
+  props: ["menuOpens"],
   methods: {
     getTitleImg() {
       axios
@@ -142,20 +104,30 @@ export default {
     @content;
   }
 }
+@mixin for-mobile {
+  @media (max-width: 840px) {
+    @content;
+  }
+}
 
 .home {
   &__header {
+    position: relative;
     height: 70vh;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    overflow: hidden;
     display: flex;
+
     justify-content: center;
     padding-top: 100px;
 
     @include for-tablet {
       height: 50vh;
+      padding-top: 60px;
+    }
+    @include for-mobile {
+      height: 30vh;
       padding-top: 60px;
     }
 
@@ -166,6 +138,9 @@ export default {
       @include for-tablet {
         font-size: 2.5rem;
       }
+      @include for-mobile {
+        font-size: 1.9rem;
+      }
 
       span {
         display: block;
@@ -174,13 +149,28 @@ export default {
     }
   }
 
+  &__author {
+    position: absolute;
+    bottom: 20px;
+    color: #4b4b4b;
+
+    a {
+      text-decoration: none;
+      color: #4b4b4b;
+    }
+  }
+
   h3 {
     margin-bottom: 0;
   }
 
   &__box {
-    width: 80vw;
+    width: 60vw;
     text-align: center;
+
+    @include for-mobile {
+      width: 80vw;
+    }
   }
 
   &__content {

@@ -2,14 +2,16 @@
   <div class="container">
     <ImageModal v-if="showModal" @close="showModal = false" :image="image"></ImageModal>
     <div class="container__pageBox" v-for="(imgs, index) in images" :key="index">
-      <img
+      <div
+        class="container__imgBox"
         v-for="(img, index) in imgs"
         :key="index"
-        :src="img.src.large"
-        :alt=" 'Photo by ' + img.photographer"
         :class="'img-' + index"
         @click="showModalFn(img)"
-      />
+      >
+        <img :src="img.src.large" :alt=" 'Photo by ' + img.photographer" />
+        <span class="container__photographer">Photo by {{img.photographer}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -75,10 +77,34 @@ export default {
       transition: all 0.3s ease-in;
       cursor: pointer;
     }
+  }
+  &__imgBox {
+    position: relative;
+    cursor: pointer;
 
-    img:hover {
-      transform: scale(1.1);
+    &:hover {
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      span {
+        opacity: 1;
+      }
     }
+  }
+  &__photographer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #ffffff;
+    font-size: 0.8rem;
+    opacity: 0;
   }
 
   .img-0 {

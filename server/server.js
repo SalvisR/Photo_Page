@@ -31,8 +31,6 @@ app.use('/title', async (req, res) => {
 });
 
 app.use('/curated', async (req, res) => {
-  console.log('test');
-
   try {
     const page = req.query.page;
 

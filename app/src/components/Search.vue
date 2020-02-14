@@ -11,7 +11,7 @@
       <button class="search__btn" type="submit">
         <img src="@/assets/search.svg" alt="Search" />
       </button>
-      <div tabindex="0" class="search__menu" :class="{ 'menu-active': searchMenu }">
+      <div class="search__menu" :class="{ 'menu-active': searchMenu }">
         <button
           v-for="(val, index) in storageValues"
           :key="index"
@@ -97,7 +97,7 @@ export default {
   z-index: 100;
 
   input[type="text"] {
-    width: 70%;
+    width: 80%;
     height: 40px;
     border: none;
     outline: none;
@@ -134,8 +134,11 @@ export default {
     border: none;
     outline: none;
     position: absolute;
-    right: 15%;
+    right: 10%;
     cursor: pointer;
+    @include for-tablet {
+      right: 5%;
+    }
 
     img {
       width: 80%;
@@ -148,8 +151,9 @@ export default {
   &__menu {
     position: absolute;
     left: 50%;
+    z-index: 9999;
     transform: translate(-50%, 0);
-    width: 70%;
+    width: 80%;
     height: 0;
     background-color: #ffffff;
     box-shadow: inset 0px 48px 24px -49px rgba(130, 130, 130, 1);
@@ -162,6 +166,10 @@ export default {
     box-sizing: border-box;
     z-index: 2;
     outline: none;
+
+    @include for-tablet {
+      width: 90%;
+    }
 
     button {
       transform: translateY(-100%);
@@ -191,6 +199,10 @@ export default {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in;
+
+    @include for-tablet {
+      left: 92%;
+    }
 
     &:hover {
       transform: scale(1.3);
