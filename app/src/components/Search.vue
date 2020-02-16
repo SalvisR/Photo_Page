@@ -47,6 +47,8 @@ export default {
           name: "searchpage",
           params: { search: this.searchVal }
         });
+
+        this.searchMenu = false;
       }
     },
     getSearchValues() {
