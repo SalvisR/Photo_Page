@@ -38,6 +38,10 @@ export default {
   methods: {
     closeModal() {
       this.$emit("close");
+      this.$router.push({
+        name: this.$route.name,
+        query: {}
+      });
     }
   }
 };

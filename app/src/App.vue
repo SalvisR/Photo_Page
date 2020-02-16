@@ -24,8 +24,6 @@ export default {
       this.search = val;
     },
     getMenuOpen(val) {
-      console.log(val);
-
       this.menuOpens = val;
     }
   }

@@ -84,6 +84,23 @@ app.use('/popular', async (req, res) => {
   }
 });
 
+app.use('/image', async (req, res) => {
+  try {
+    const id = req.query.id;
+    const photo = await pexelsClient.getPhoto(id);
+
+    res.status(200).json({
+      status: 'success',
+      data: photo
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      data: err
+    });
+  }
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

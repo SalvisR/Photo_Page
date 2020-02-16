@@ -64,7 +64,7 @@ export default {
     closeMenu() {
       setTimeout(() => {
         this.searchMenu = false;
-      }, 500);
+      }, 300);
     },
     redirect(val) {
       this.searchVal = val;
@@ -105,7 +105,7 @@ export default {
     padding-left: 10px;
     font-size: 1.1rem;
     box-sizing: border-box;
-    transition: all 0.3s ease-in;
+    transition: all 0.3s 0.3s ease-in;
     position: relative;
 
     @include for-tablet {
@@ -113,6 +113,7 @@ export default {
     }
 
     &:focus {
+      transition: all 0.3s ease-in;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }

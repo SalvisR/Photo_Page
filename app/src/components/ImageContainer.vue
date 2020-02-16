@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import ImageModal from "@/components/ImageModal";
 
 export default {
@@ -35,7 +36,33 @@ export default {
     showModalFn(img) {
       this.showModal = true;
       this.image = img;
+
+      this.$router.push({
+        name: this.$route.name,
+        query: {
+          id: img.id
+        }
+      });
+    },
+    async getImageById(id) {
+      axios
+        .get(`${process.env.VUE_APP_URL}/image`, { params: { id: id } })
+        .then(res => {
+          this.image = res.data.data;
+        })
+        .then(() => {
+          this.showModal = true;
+        })
+        .catch(err => console.log(err));
+    },
+    showImageById() {
+      if (this.$route.query.id) {
+        this.getImageById(this.$route.query.id);
+      }
     }
+  },
+  mounted() {
+    this.showImageById();
   }
 };
 </script>

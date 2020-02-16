@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Search from '../views/Search.vue'
 import Popular from '../views/Popular.vue'
+import Categories from '../views/Categories.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [{
     path: '/popular',
     name: 'popular',
     component: Popular
+  },
+  {
+    path: '/categories',
+    name: 'categories',
+    component: Categories
   }
 ]
 

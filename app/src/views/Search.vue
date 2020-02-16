@@ -63,7 +63,7 @@ export default {
 
       const val = this.$route.params.search;
       storage.unshift(val);
-      const unique = [...new Set(storage)];
+      const unique = [...new Set(storage)].slice(0, 11);
 
       localStorage.setItem("search", JSON.stringify(unique));
     }
