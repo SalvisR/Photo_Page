@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import axios from "axios";
-import ImageContainer from "@/components/ImageContainer";
-import LoadMoreBtn from "@/components/LoadMoreBtn";
+import axios from 'axios';
+import ImageContainer from '@/components/ImageContainer';
+import LoadMoreBtn from '@/components/LoadMoreBtn';
 
 export default {
-  name: "popular",
+  name: 'popular',
   data() {
     return {
       search: true,
@@ -38,14 +38,12 @@ export default {
           this.current_page++;
           this.loading = false;
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => {});
     }
   },
   mounted() {
     this.getImages();
-    this.$emit("search", this.search);
+    this.$emit('search', this.search);
   }
 };
 </script>

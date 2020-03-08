@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import axios from "axios";
-import ImageContainer from "@/components/ImageContainer";
-import LoadMoreBtn from "@/components/LoadMoreBtn";
+import axios from 'axios';
+import ImageContainer from '@/components/ImageContainer';
+import LoadMoreBtn from '@/components/LoadMoreBtn';
 
 export default {
-  name: "search-page",
+  name: 'search-page',
   components: {
     ImageContainer,
     LoadMoreBtn
@@ -47,14 +47,13 @@ export default {
         })
         .catch(err => {
           this.loading = false;
-          console.log(err);
         });
     },
     addToLocalStorage() {
       if (this.imgs[0].length < 1) {
         return;
       }
-      let storage = localStorage.getItem("search");
+      let storage = localStorage.getItem('search');
       if (storage) {
         storage = JSON.parse(storage);
       } else {
@@ -65,12 +64,12 @@ export default {
       storage.unshift(val);
       const unique = [...new Set(storage)].slice(0, 11);
 
-      localStorage.setItem("search", JSON.stringify(unique));
+      localStorage.setItem('search', JSON.stringify(unique));
     }
   },
   mounted() {
     this.getImages();
-    this.$emit("search", this.search);
+    this.$emit('search', this.search);
   }
 };
 </script>

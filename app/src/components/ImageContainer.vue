@@ -1,7 +1,15 @@
 <template>
   <div class="container">
-    <ImageModal v-if="showModal" @close="showModal = false" :image="image"></ImageModal>
-    <div class="container__pageBox" v-for="(imgs, index) in images" :key="index">
+    <ImageModal
+      v-if="showModal"
+      @close="showModal = false"
+      :image="image"
+    ></ImageModal>
+    <div
+      class="container__pageBox"
+      v-for="(imgs, index) in images"
+      :key="index"
+    >
       <div
         class="container__imgBox"
         v-for="(img, index) in imgs"
@@ -9,19 +17,25 @@
         :class="'img-' + index"
         @click="showModalFn(img)"
       >
-        <img :src="img.src.large" :alt=" 'Photo by ' + img.photographer" />
-        <span class="container__photographer">Photo by {{img.photographer}}</span>
+        <img
+          loading="lazy"
+          :src="img.src.large"
+          :alt="'Photo by ' + img.photographer"
+        />
+        <span class="container__photographer"
+          >Photo by {{ img.photographer }}</span
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import ImageModal from "@/components/ImageModal";
+import axios from 'axios';
+import ImageModal from '@/components/ImageModal';
 
 export default {
-  name: "imagecontainer",
+  name: 'imagecontainer',
   components: {
     ImageModal
   },
@@ -31,7 +45,7 @@ export default {
       image: null
     };
   },
-  props: ["images"],
+  props: ['images'],
   methods: {
     showModalFn(img) {
       this.showModal = true;
@@ -111,7 +125,7 @@ export default {
 
     &:hover {
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         top: 0;

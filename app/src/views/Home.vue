@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <section class="home__header" :style="{ backgroundImage: 'url(' + titleImg + ')' }">
+    <section
+      class="home__header"
+      :style="{ backgroundImage: 'url(' + titleImg + ')' }"
+    >
       <div ref="searchEl" class="home__box">
         <h1>
           Find The Best Free Photos
@@ -11,7 +14,7 @@
 
       <span class="home__author">
         Photo By
-        <a :href="authorUrl">{{authorName}}</a>
+        <a :href="authorUrl">{{ authorName }}</a>
       </span>
     </section>
     <section class="home__content">
@@ -23,13 +26,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import ImageContainer from "@/components/ImageContainer";
-import Search from "@/components/Search";
-import LoadMoreBtn from "@/components/LoadMoreBtn";
+import axios from 'axios';
+import ImageContainer from '@/components/ImageContainer';
+import Search from '@/components/Search';
+import LoadMoreBtn from '@/components/LoadMoreBtn';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     ImageContainer,
     Search,
@@ -46,7 +49,7 @@ export default {
       search: false
     };
   },
-  props: ["menuOpens"],
+  props: ['menuOpens'],
   methods: {
     getTitleImg() {
       axios
@@ -56,7 +59,7 @@ export default {
           this.authorName = res.data.data.photos[0].photographer;
           this.authorUrl = res.data.data.photos[0].photographer_url;
         })
-        .catch(err => console.log(err));
+        .catch(err => {});
     },
     getCuratedImgs() {
       this.loading = true;
@@ -72,7 +75,6 @@ export default {
           this.loading = false;
         })
         .catch(err => {
-          console.log(err);
           this.loading = false;
         });
     },
@@ -80,9 +82,9 @@ export default {
       const searchEl = this.$refs.searchEl.offsetTop + 50;
       if (searchEl >= window.scrollY) {
         this.search = false;
-        this.$emit("search", this.search);
+        this.$emit('search', this.search);
       } else {
-        this.$emit("search", this.search);
+        this.$emit('search', this.search);
         this.search = true;
       }
     }
@@ -90,10 +92,10 @@ export default {
   created() {
     this.getTitleImg();
     this.getCuratedImgs();
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 };
 </script>

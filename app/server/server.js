@@ -14,7 +14,7 @@ const headers = {
   Authorization: process.env.API_KEY
 };
 
-app.use(express.static(path.join(__dirname, '../app/dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use('/title', async (req, res) => {
   try {
