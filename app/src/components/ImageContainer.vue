@@ -53,7 +53,7 @@ export default {
         .then(() => {
           this.showModal = true;
         })
-        .catch(err => console.log(err));
+        .catch(err => {});
     },
     showImageById() {
       if (this.$route.query.id) {

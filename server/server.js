@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const PexelsAPI = require('pexels-api-wrapper');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -12,6 +13,8 @@ const url = 'https://api.pexels.com/v1/curated?per_page=15&page=1';
 const headers = {
   Authorization: process.env.API_KEY
 };
+
+app.use(express.static(path.join(__dirname, '../app/dist')));
 
 app.use('/title', async (req, res) => {
   try {
@@ -101,7 +104,7 @@ app.use('/image', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
