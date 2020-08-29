@@ -85,6 +85,7 @@ export default {
   padding: 0.5rem 0;
   width: 100%;
   z-index: 5;
+  transition: all 0.3s ease-in-out;
 
   @include for-tablet {
     font-size: 0.9rem;
